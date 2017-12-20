@@ -45,7 +45,7 @@ namespace FoodStock01
             }
         }
 
-        /*******************セレクトメソッド**************************************/
+        /*******************セレクトメソッド*************************************/
         public static List<FoodModel> SelectFood()
         {
             using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
