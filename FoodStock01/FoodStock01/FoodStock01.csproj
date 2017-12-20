@@ -79,6 +79,7 @@
     <Compile Include="SearchWebView.xaml.cs">
       <DependentUpon>SearchWebView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingModel.cs" />
     <Compile Include="SettingNavi.cs" />
     <Compile Include="SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>

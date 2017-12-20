@@ -12,6 +12,7 @@ namespace FoodStock01
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingPage : ContentPage
 	{
+        int notice = 0;//SetPickerの値を一時的に保持する
 		public SettingPage (string title)
 		{
             //タブに表示される文字列
@@ -19,5 +20,21 @@ namespace FoodStock01
 
             InitializeComponent();
 		}
-	}
+
+        private void SetPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var x = SetPicker.SelectedIndex;
+
+            notice = x;
+        }
+
+        private void Set_Save_Clicked(object sender, EventArgs e)
+        {
+            SettingModel.InsertSetting(notice);
+
+            DisplayAlert("通知日数", notice.ToString(), "OK");
+        }
+
+        
+    }
 }
