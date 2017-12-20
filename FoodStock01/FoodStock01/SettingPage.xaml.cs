@@ -25,7 +25,7 @@ namespace FoodStock01
         {
             var x = SetPicker.SelectedIndex;
 
-            notice = x+1;
+            notice = x+1;//
         }
 
         private void Set_Save_Clicked(object sender, EventArgs e)
