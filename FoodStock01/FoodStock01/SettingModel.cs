@@ -36,5 +36,29 @@ namespace FoodStock01
                 }
             }
         }
+
+        /*******************セレクトメソッド（最新の通知日数）*************************************/
+        public static List<FoodModel> SelectSetting()
+        {
+            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
+            {
+                try
+                {
+                    //データベースに指定したSQLを発行
+                    return db.Query<FoodModel>("SELECT [Set_date] " +
+                                               "FROM [Setting] " +
+                                               "WHERE [Set_no] = " +
+                                               "(SELECT MAX[Set_no])" +
+                                               "FROM [Setting]");
+
+                }
+                catch (Exception e)
+                {
+
+                    System.Diagnostics.Debug.WriteLine(e);
+                    return null;
+                }
+            }
+        }
     }
 }

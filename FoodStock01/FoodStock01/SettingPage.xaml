@@ -68,6 +68,12 @@
                     x:Name="Set_Save"
                     Clicked="Set_Save_Clicked"
                     VerticalOptions="Center"/>
+
+            <Button Text="MAXがSELECTできるか" 
+                    x:Name="Test_Button"
+                    Clicked="Test_Button_Clicked"
+                    VerticalOptions="Center"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

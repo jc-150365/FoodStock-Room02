@@ -41,6 +41,11 @@ namespace FoodStock01
             }
         }
 
-        
+        private void Test_Button_Clicked(object sender, EventArgs e)
+        {
+            var y = SettingModel.SelectSetting();
+
+            DisplayAlert("最新の通知日数", y.ToString(), "OK");
+        }
     }
 }
