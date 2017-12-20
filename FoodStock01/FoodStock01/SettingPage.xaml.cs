@@ -25,14 +25,20 @@ namespace FoodStock01
         {
             var x = SetPicker.SelectedIndex;
 
-            notice = x;
+            notice = x+1;
         }
 
         private void Set_Save_Clicked(object sender, EventArgs e)
         {
-            SettingModel.InsertSetting(notice);
-
-            DisplayAlert("通知日数", notice.ToString(), "OK");
+            if (notice == 0)
+            {
+                DisplayAlert("通知日数エラー","通知日数を選択してください", "OK");
+            }
+            else
+            {
+                SettingModel.InsertSetting(notice);
+                DisplayAlert("通知日数", notice.ToString(), "OK");
+            }
         }
 
         
