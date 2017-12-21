@@ -26,7 +26,7 @@ namespace FoodStock01
                     //データベースにFoodテーブルを作成する
                     db.CreateTable<SettingModel>();
 
-                    db.Insert(new SettingModel() { Set_no = set_no, Set_date = set_date});
+                    db.Insert(new SettingModel() { Set_no = set_no, Set_date = set_date });
                     db.Commit();
                 }
                 catch (Exception e)

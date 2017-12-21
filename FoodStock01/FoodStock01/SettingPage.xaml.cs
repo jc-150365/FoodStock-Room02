@@ -14,6 +14,8 @@ namespace FoodStock01
 	{
         int notice = 0;//SetPickerの値を一時的に保持する
 
+        List<SettingModel> list;
+
         public SettingPage (string title)
 		{
             if (SettingModel.SelectSetting() != null)
@@ -59,9 +61,9 @@ namespace FoodStock01
         /***************Testボタンを押したとき*********************/
         private void Test_Button_Clicked(object sender, EventArgs e)
         {
-            List<SettingModel> list = SettingModel.SelectSetting();
+           
+            list.Add(SettingModel.SelectSetting().ElementAt<SettingModel>(1));
 
-         
             //int x = y.ElementAt<SettingModel>;
 
             /*string[] names =
@@ -72,12 +74,11 @@ namespace FoodStock01
             };
 
             Random random = new Random(DateTime.Now.Millisecond);
-
             string name = names.ElementAt(random.Next(0, names.Length));
 
             Console.WriteLine("The name chosen at random is '{0}'.", name);*/
 
-            DisplayAlert("最新の通知日数", list.ToString(), "OK");
+            DisplayAlert("最新の通知日数", list.ElementAt(1).ToString(), "OK");
 
             
         }
