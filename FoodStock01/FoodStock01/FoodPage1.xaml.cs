@@ -17,10 +17,23 @@ namespace FoodStock01
 
         public FoodPage1(string title)
         {
-            //タイトル
-            Title = title;
+            /***************うまくいくかわからない*************************/
+            if (FoodModel.Select02Food() != null)
+            {     
+                //タイトル
+                Title = title;
 
-            InitializeComponent();
+                InitializeComponent();
+
+                DisplayAlert("消費期限通知", "消費期限が近づいている食材があります", "OK");
+            }
+            else
+            {
+                //タイトル
+                Title = title;
+
+                InitializeComponent();
+            }
         }
 
         void ChackBoxChanged(object sender, bool isChecked)

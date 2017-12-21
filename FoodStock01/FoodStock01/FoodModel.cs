@@ -19,9 +19,7 @@ namespace FoodStock01
 
         public DateTime F_date { get; set; } //消費期限
 
-        public string F_limit { get; set; } //現在時刻との差（後で使うかも）
-
-        public TimeSpan F_span { get; set; } //現在日時との差（後で使うかも）
+        public int F_set { get; set; } //通知日数
 
         /********************インサートメソッド**********************/
         public static void InsertFood(int f_no, string f_name, int f_result, DateTime f_date)
@@ -109,7 +107,7 @@ namespace FoodStock01
             }
         }
 
-        /********************アップデートメソッド（日付）*************************************/
+        /********************アップデートメソッド(消費期限関係）*************************************/
         public static void UpdateF_date(int f_no, string f_name, int f_result, DateTime f_date)
         {
             //データベースに接続する
@@ -136,5 +134,50 @@ namespace FoodStock01
                 }
             }
         }
+
+        /*******************セレクトメソッド（通知関係）*************************************/
+        public static List<FoodModel> Select02Food()
+        {
+            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
+            {
+                try
+                {
+                    //データベースに指定したSQLを発行
+                    return db.Query<FoodModel>("SELECT * " +
+                                               "FROM [Food]" +
+                                               "WHERE [S_result] = [S_set]");
+
+                }
+                catch (Exception e)
+                {
+
+                    System.Diagnostics.Debug.WriteLine(e);
+                    return null;
+                }
+            }
+        }
+
+        /*******************インサ－トメソッド(通知関係）*************************************/
+        public static void InsertFood02(int f_set)
+        {
+            //データベースに接続する
+            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
+            {
+                try
+                {
+                    //データベースにFoodテーブルを作成する
+                    db.CreateTable<FoodModel>();
+
+                    db.Insert(new FoodModel() { F_set = f_set });
+                    db.Commit();
+                }
+                catch (Exception e)
+                {
+                    db.Rollback();
+                    System.Diagnostics.Debug.WriteLine(e);
+                }
+            }
+        }
+
     }
 }
