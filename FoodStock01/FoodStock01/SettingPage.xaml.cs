@@ -28,6 +28,7 @@ namespace FoodStock01
             else
             {
                 //SettingModel.InsertSetting(1, 3);
+                SettingModel.InsertSetting(1, 3);
                 FoodModel.InsertFood02(3);
 
                 //タブに表示される文字列
