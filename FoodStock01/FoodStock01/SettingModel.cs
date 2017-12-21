@@ -16,7 +16,7 @@ namespace FoodStock01
         public int Set_date { get; set; } //通知日数
 
         /********************インサートメソッド（通知日数）**********************/
-        public static void InsertSetting(int set_date)
+        public static void InsertSetting(int set_no,int set_date)
         {
             //データベースに接続する
             using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
@@ -26,7 +26,7 @@ namespace FoodStock01
                     //データベースにFoodテーブルを作成する
                     db.CreateTable<SettingModel>();
 
-                    db.Insert(new SettingModel() { Set_date = set_date});
+                    db.Insert(new SettingModel() { Set_no = set_no, Set_date = set_date});
                     db.Commit();
                 }
                 catch (Exception e)
@@ -45,11 +45,7 @@ namespace FoodStock01
                 try
                 {
                     //データベースに指定したSQLを発行
-                    return db.Query<SettingModel>("SELECT [Set_date] " +
-                                               "FROM [Setting] " +
-                                               "WHERE [Set_no] = " +
-                                               "(SELECT MAX[Set_no])" +
-                                               "FROM [Setting]");
+                    return db.Query<SettingModel>("SELECT * FROM [Setting]");
 
                 }
                 catch (Exception e)
@@ -57,6 +53,28 @@ namespace FoodStock01
 
                     System.Diagnostics.Debug.WriteLine(e);
                     return null;
+                }
+            }
+        }
+
+        /********************アップデートメソッド（2回目以降の通知設定）**********************/
+        public static void UpdateSetting(int set_no, int set_date)
+        {
+            //データベースに接続する
+            using (SQLiteConnection db = new SQLiteConnection(App.dbPath))
+            {
+                try
+                {
+                    //データベースにFoodテーブルを作成する
+                    db.CreateTable<SettingModel>();
+
+                    db.Update(new SettingModel() { Set_no = set_no, Set_date = set_date });
+                    db.Commit();
+                }
+                catch (Exception e)
+                {
+                    db.Rollback();
+                    System.Diagnostics.Debug.WriteLine(e);
                 }
             }
         }
