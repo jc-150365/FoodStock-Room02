@@ -60,8 +60,27 @@ namespace FoodStock01
         private void Test_Button_Clicked(object sender, EventArgs e)
         {
             var y = SettingModel.SelectSetting();
-           
-            DisplayAlert("最新の通知日数", y.ToString(), "OK");
+
+            List<SettingModel> list = y;
+
+            //int x = y.ElementAt<SettingModel>;
+
+            /*string[] names =
+            {
+                "Hartono, Tommy", "Adams, Terry", "Andersen, Henriette Thaulow", 
+
+                "Hedlund, Magnus", "Ito, Shu" 
+            };
+
+            Random random = new Random(DateTime.Now.Millisecond);
+
+            string name = names.ElementAt(random.Next(0, names.Length));
+
+            Console.WriteLine("The name chosen at random is '{0}'.", name);*/
+
+            //DisplayAlert("最新の通知日数", y.ToString(), "OK");
+
+            DisplayAlert("最新の通知日数", list.ElementAt(1).ToString(), "OK"); 
         }
     }
 }
