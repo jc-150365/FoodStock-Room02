@@ -59,10 +59,9 @@ namespace FoodStock01
         /***************Testボタンを押したとき*********************/
         private void Test_Button_Clicked(object sender, EventArgs e)
         {
-            var y = SettingModel.SelectSetting();
+            List<SettingModel> list = SettingModel.SelectSetting();
 
-            List<SettingModel> list = y;
-
+         
             //int x = y.ElementAt<SettingModel>;
 
             /*string[] names =
@@ -78,9 +77,9 @@ namespace FoodStock01
 
             Console.WriteLine("The name chosen at random is '{0}'.", name);*/
 
-            //DisplayAlert("最新の通知日数", y.ToString(), "OK");
+            DisplayAlert("最新の通知日数", list.ToString(), "OK");
 
-            DisplayAlert("最新の通知日数", list.ElementAt(1).ToString(), "OK"); 
+            
         }
     }
 }
